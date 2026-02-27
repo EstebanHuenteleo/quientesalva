@@ -1,0 +1,36 @@
+---
+import { siteConfig } from '../data/siteConfig';
+---
+
+<section id="cobertura" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <h2 class="text-3xl sm:text-4xl font-bold text-primary mb-4">Zonas de Cobertura</h2>
+      <p class="text-lg text-text/70 max-w-2xl mx-auto">
+        Atiendo en las siguientes comunas de Santiago. ¿No ves tu comuna? Contáctame y lo vemos.
+      </p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+      {siteConfig.comunas.map((comuna, i) => (
+        <span
+          data-aos="fade-up"
+          data-aos-delay={i * 50}
+          class="inline-flex items-center gap-2 bg-primary/10 text-primary font-semibold px-5 py-2.5 rounded-full text-sm hover:bg-primary hover:text-white transition-colors cursor-default"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+          </svg>
+          {comuna}
+        </span>
+      ))}
+    </div>
+
+    <div class="text-center mt-8" data-aos="fade-up" data-aos-delay="300">
+      <p class="text-sm text-text/50">
+        * Para comunas fuera de esta lista, consultar disponibilidad y costo de traslado.
+      </p>
+    </div>
+  </div>
+</section>

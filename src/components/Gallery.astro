@@ -1,0 +1,41 @@
+---
+const images = [
+  { alt: 'Instalación sanitaria', placeholder: 'Instalación+Sanitaria' },
+  { alt: 'Reparación de cañerías', placeholder: 'Reparación+Cañerías' },
+  { alt: 'Instalación de calefón', placeholder: 'Instalación+Calefón' },
+  { alt: 'Destape de cañerías', placeholder: 'Destape+Cañerías' },
+  { alt: 'Red de gas', placeholder: 'Red+de+Gas' },
+  { alt: 'Trabajo terminado', placeholder: 'Trabajo+Terminado' },
+];
+---
+
+<section id="trabajos" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <h2 class="text-3xl sm:text-4xl font-bold text-primary mb-4">Trabajos Realizados</h2>
+      <p class="text-lg text-text/70 max-w-2xl mx-auto">
+        Algunos de mis trabajos recientes. Calidad y limpieza en cada proyecto.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {images.map((img, i) => (
+        <div
+          data-aos="fade-up"
+          data-aos-delay={i * 100}
+          class="group relative overflow-hidden rounded-2xl aspect-[4/3] bg-gray-100"
+        >
+          <img
+            src={`https://placehold.co/600x450/1e3a5f/white?text=${img.placeholder}`}
+            alt={img.alt}
+            loading="lazy"
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <p class="absolute bottom-4 left-4 text-white font-semibold text-sm">{img.alt}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

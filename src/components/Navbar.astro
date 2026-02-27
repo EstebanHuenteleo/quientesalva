@@ -1,0 +1,117 @@
+---
+import { siteConfig } from '../data/siteConfig';
+
+const navLinks = [
+  { href: '#servicios', label: 'Servicios' },
+  { href: '#por-que-yo', label: 'Por Qué Yo' },
+  { href: '#trabajos', label: 'Trabajos' },
+  { href: '#sobre-mi', label: 'Sobre Mí' },
+  { href: '#cobertura', label: 'Cobertura' },
+  { href: '#contacto', label: 'Contacto' },
+];
+---
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2 text-white font-bold text-lg">
+        <svg class="w-8 h-8" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="30" fill="#f97316"/>
+          <path d="M32 16c-3 0-6 3-6 6v10c0 2-2 3-3 3h-3c-2 0-3 2-3 3v12c0 2 2 3 3 3h24c2 0 3-1 3-3V38c0-1-1-3-3-3h-3c-1 0-3-1-3-3V22c0-3-3-6-6-6z" fill="white"/>
+          <circle cx="32" cy="42" r="4" fill="#f97316"/>
+        </svg>
+        <span class="hidden sm:inline">{siteConfig.domain}</span>
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="hidden md:flex items-center gap-6">
+        {navLinks.map(link => (
+          <a href={link.href} class="text-white/90 hover:text-white text-sm font-medium transition-colors">
+            {link.label}
+          </a>
+        ))}
+        <a
+          href={`${siteConfig.whatsappLink}?text=${encodeURIComponent('Hola, necesito un gasfiter')}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-whatsapp hover:bg-whatsapp/90 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+        >
+          WhatsApp
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <button
+        id="menu-toggle"
+        class="md:hidden text-white p-2"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+      >
+        <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden hidden bg-primary/95 backdrop-blur-sm">
+    <div class="px-4 py-4 space-y-2">
+      {navLinks.map(link => (
+        <a href={link.href} class="mobile-link block text-white/90 hover:text-white py-2 text-sm font-medium">
+          {link.label}
+        </a>
+      ))}
+      <a
+        href={`${siteConfig.whatsappLink}?text=${encodeURIComponent('Hola, necesito un gasfiter')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="block bg-whatsapp hover:bg-whatsapp/90 text-white text-sm font-semibold px-4 py-2 rounded-lg text-center mt-3 transition-colors"
+      >
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const navbar = document.getElementById('navbar')!;
+  const toggle = document.getElementById('menu-toggle')!;
+  const menu = document.getElementById('mobile-menu')!;
+  const iconOpen = document.getElementById('icon-open')!;
+  const iconClose = document.getElementById('icon-close')!;
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  // Scroll: transparent → solid
+  function updateNav() {
+    if (window.scrollY > 50) {
+      navbar.classList.add('bg-primary', 'shadow-lg');
+    } else {
+      navbar.classList.remove('bg-primary', 'shadow-lg');
+    }
+  }
+  window.addEventListener('scroll', updateNav);
+  updateNav();
+
+  // Mobile toggle
+  toggle.addEventListener('click', () => {
+    const open = menu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', String(!open));
+  });
+
+  // Close on link click
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

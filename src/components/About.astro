@@ -1,0 +1,68 @@
+---
+import { siteConfig } from '../data/siteConfig';
+
+const experience = [
+  { period: '2014 - Presente', role: 'Gasfiter Independiente', description: 'Atención a domicilio en comunas del sur de Santiago. Más de 500 trabajos realizados.' },
+  { period: '2010 - 2014', role: 'Gasfiter en Empresa de Construcción', description: 'Instalaciones sanitarias y de gas en proyectos residenciales y comerciales.' },
+];
+---
+
+<section id="sobre-mi" class="py-20 bg-surface">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <h2 class="text-3xl sm:text-4xl font-bold text-primary mb-4">Sobre Mí</h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <!-- Photo + intro -->
+      <div data-aos="fade-right">
+        <div class="relative">
+          <img
+            src="https://placehold.co/500x600/1e3a5f/white?text=Salvador+Huenteleo"
+            alt={siteConfig.name}
+            class="w-full rounded-2xl shadow-lg"
+            loading="lazy"
+          />
+          <div class="absolute -bottom-4 -right-4 bg-accent text-white font-bold py-3 px-6 rounded-xl shadow-lg">
+            +10 años de experiencia
+          </div>
+        </div>
+      </div>
+
+      <!-- Bio + timeline + certs -->
+      <div data-aos="fade-left">
+        <p class="text-lg text-text/80 leading-relaxed mb-8">
+          Soy <strong class="text-primary">{siteConfig.name}</strong>, gasfiter profesional con más de 10 años de experiencia.
+          Me especializo en instalaciones sanitarias, redes de gas y reparaciones de emergencia.
+          Trabajo con responsabilidad, limpieza y siempre cumpliendo la normativa vigente.
+        </p>
+
+        <!-- Timeline -->
+        <h3 class="text-xl font-bold text-primary mb-6">Experiencia</h3>
+        <div class="space-y-6 mb-8">
+          {experience.map(exp => (
+            <div class="relative pl-6 border-l-2 border-accent/30">
+              <div class="absolute -left-[7px] top-1 w-3 h-3 bg-accent rounded-full"></div>
+              <span class="text-sm font-semibold text-accent">{exp.period}</span>
+              <h4 class="text-base font-bold text-primary">{exp.role}</h4>
+              <p class="text-sm text-text/70">{exp.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <!-- Certifications -->
+        <h3 class="text-xl font-bold text-primary mb-4">Certificaciones</h3>
+        <div class="flex flex-wrap gap-3">
+          {siteConfig.certifications.map(cert => (
+            <span class="inline-flex items-center gap-2 bg-primary/10 text-primary font-medium text-sm px-4 py-2 rounded-lg">
+              <svg class="w-4 h-4 text-whatsapp" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              {cert.name}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
