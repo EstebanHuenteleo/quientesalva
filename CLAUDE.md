@@ -74,6 +74,9 @@ Todo dato del negocio está en `src/data/siteConfig.ts`:
 - [ ] Considerar agregar testimonios de clientes
 - [ ] Agregar Google Analytics o similar
 
+## Herramientas
+- **Siempre usar el MCP de Context7** para consultar documentación actualizada de Astro, Tailwind, AOS o cualquier librería antes de implementar cambios. No asumir sintaxis de memoria.
+
 ## Convenciones
 - Comunicación en **español**
 - Componentes Astro en `src/components/`, uno por sección
