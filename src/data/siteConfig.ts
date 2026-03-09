@@ -9,6 +9,7 @@ export const siteConfig = {
   email: "",
   schedule: {
     emergency: "Urgencias 24/7",
+    regular: "Lunes a Sábado 8:00 - 20:00 · Urgencias 24/7",
   },
   social: {
     instagram: "",

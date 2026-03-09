@@ -23,7 +23,7 @@ const navLinks = [
       <!-- Desktop nav -->
       <div class="hidden md:flex items-center gap-6">
         {navLinks.map(link => (
-          <a href={link.href} class="text-white/90 hover:text-white text-sm font-medium transition-colors">
+          <a href={link.href} class="text-white/90 hover:text-white text-sm font-medium transition-colors py-2 px-1">
             {link.label}
           </a>
         ))}
@@ -40,7 +40,7 @@ const navLinks = [
       <!-- Mobile menu button -->
       <button
         id="menu-toggle"
-        class="md:hidden text-white p-2"
+        class="md:hidden text-white p-2.5"
         aria-label="Abrir menú"
         aria-expanded="false"
       >
@@ -58,7 +58,7 @@ const navLinks = [
   <div id="mobile-menu" class="md:hidden hidden bg-primary/95 backdrop-blur-sm">
     <div class="px-4 py-4 space-y-2">
       {navLinks.map(link => (
-        <a href={link.href} class="mobile-link block text-white/90 hover:text-white py-2 text-sm font-medium">
+        <a href={link.href} class="mobile-link block text-white/90 hover:text-white py-3 text-sm font-medium">
           {link.label}
         </a>
       ))}
@@ -66,7 +66,7 @@ const navLinks = [
         href={`${siteConfig.whatsappLink}?text=${encodeURIComponent('Hola, necesito un gasfiter')}`}
         target="_blank"
         rel="noopener noreferrer"
-        class="block bg-whatsapp hover:bg-whatsapp/90 text-white text-sm font-semibold px-4 py-2 rounded-lg text-center mt-3 transition-colors"
+        class="block bg-whatsapp hover:bg-whatsapp/90 text-white text-sm font-semibold px-4 py-3 rounded-lg text-center mt-3 transition-colors"
       >
         WhatsApp
       </a>
