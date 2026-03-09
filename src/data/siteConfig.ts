@@ -7,10 +7,6 @@ export const siteConfig = {
   whatsappLink: "https://wa.me/56988336290",
   phone: "+56 9 8833 6290",
   email: "",
-  schedule: {
-    emergency: "Urgencias 24/7",
-    regular: "Lunes a Sábado 8:00 - 20:00 · Urgencias 24/7",
-  },
   social: {
     instagram: "",
     facebook: "",

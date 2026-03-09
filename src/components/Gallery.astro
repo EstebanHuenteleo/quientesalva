@@ -6,7 +6,7 @@ const images = [
   { src: '/trabajos/red-canerias-panoramica.jpg', alt: 'Red de cañerías de cobre - instalación profesional' },
   { src: '/trabajos/conexion-calefones.jpg', alt: 'Conexión de calefones a gas - servicio certificado SEC' },
   { src: '/trabajos/reparacion-lavaplatos.jpg', alt: 'Reparación de lavaplatos - gasfiter a domicilio Santiago' },
-  { src: '/trabajos/reparacion-caneria.jpg', alt: 'Reparación de cañería rota - servicio de urgencia' },
+  { src: '/trabajos/reparacion-caneria.jpg', alt: 'Reparación de cañería rota - gasfiter profesional Santiago' },
   { src: '/trabajos/instalacion-wc.jpg', alt: 'Instalación de WC - gasfiter profesional Santiago' },
   { src: '/trabajos/caneria-cobre.jpg', alt: 'Trabajo en cañería de cobre - instalación sanitaria' },
   { src: '/trabajos/termo-agua.jpg', alt: 'Instalación de termo de agua caliente - gasfiter certificado' },
@@ -18,13 +18,10 @@ const images = [
 ];
 ---
 
-<section id="trabajos" class="py-20 bg-white">
+<section id="trabajos" class="py-10 sm:py-20 bg-surface">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16" data-aos="fade-up">
-      <h2 class="text-3xl sm:text-4xl font-bold text-primary mb-4">Trabajos Realizados</h2>
-      <p class="text-lg text-text/70 max-w-2xl mx-auto">
-        Algunos de mis trabajos recientes. Calidad y limpieza en cada proyecto.
-      </p>
+    <div class="text-center mb-6 sm:mb-12" data-aos="fade-up">
+      <h2 class="text-3xl sm:text-4xl font-bold text-primary">Trabajos Realizados</h2>
     </div>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
@@ -54,6 +51,40 @@ const images = [
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 
+<style is:global>
+  /* Flechas de navegación siempre visibles */
+  .glightbox-container .gnext,
+  .glightbox-container .gprev {
+    display: flex !important;
+    opacity: 1 !important;
+    width: 44px !important;
+    height: 44px !important;
+    background: rgba(30, 58, 95, 0.7) !important;
+    border-radius: 50% !important;
+    align-items: center;
+    justify-content: center;
+  }
+  .glightbox-container .gnext svg,
+  .glightbox-container .gprev svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+  }
+  .glightbox-container .gnext:hover,
+  .glightbox-container .gprev:hover {
+    background: rgba(30, 58, 95, 0.9) !important;
+  }
+  /* Posición en mobile para que no tapen la imagen */
+  @media (max-width: 768px) {
+    .glightbox-container .gnext {
+      right: 8px !important;
+    }
+    .glightbox-container .gprev {
+      left: 8px !important;
+    }
+  }
+</style>
+
 <script is:inline src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function() {
@@ -62,6 +93,8 @@ const images = [
       touchNavigation: true,
       loop: true,
       closeOnOutsideClick: true,
+      draggable: true,
+      zoomable: false,
     });
   });
 </script>

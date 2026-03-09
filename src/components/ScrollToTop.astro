@@ -1,0 +1,28 @@
+
+<button
+  id="scroll-top"
+  class="fixed bottom-6 left-6 z-50 w-12 h-12 bg-primary/80 hover:bg-primary text-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 translate-y-4 pointer-events-none"
+  aria-label="Volver arriba"
+>
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+  </svg>
+</button>
+
+<script>
+  const btn = document.getElementById('scroll-top')!;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      btn.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+      btn.classList.add('opacity-100', 'translate-y-0');
+    } else {
+      btn.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+      btn.classList.remove('opacity-100', 'translate-y-0');
+    }
+  });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>

@@ -8,8 +8,8 @@ interface Props {
 }
 
 const {
-  title = `Gasfiter en Santiago | ${siteConfig.name} - Urgencias 24/7, Certificado SEC`,
-  description = `Gasfiter profesional certificado SEC en Santiago. Instalaciones sanitarias, reparación de filtraciones, instalación de gas, calefones y urgencias 24/7. Más de 10 años de experiencia. ${siteConfig.coverage}. Llama al ${siteConfig.phone}.`,
+  title = `Gasfiter en Santiago | ${siteConfig.name} - Certificado SEC`,
+  description = `Gasfiter profesional certificado SEC en Santiago. Instalaciones sanitarias, reparación de filtraciones, instalación de gas, calefones. Más de 10 años de experiencia. ${siteConfig.coverage}. Llama al ${siteConfig.phone}.`,
 } = Astro.props;
 
 const ogImage = new URL('/img/og-image.png', Astro.site);
@@ -20,7 +20,7 @@ const localBusinessSchema = {
   "@type": "Plumber",
   "name": siteConfig.name,
   "alternateName": "quientesalva.cl",
-  "description": "Gasfiter profesional certificado SEC en Santiago de Chile. Instalaciones sanitarias, reparaciones, gas y urgencias 24/7.",
+  "description": "Gasfiter profesional certificado SEC en Santiago de Chile. Instalaciones sanitarias, reparaciones y gas.",
   "url": siteUrl,
   "telephone": siteConfig.phone,
   "image": `${siteUrl}img/salvador-huenteleo.jpg`,
@@ -39,12 +39,6 @@ const localBusinessSchema = {
   "areaServed": {
     "@type": "State",
     "name": "Región Metropolitana de Santiago"
-  },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-    "opens": "00:00",
-    "closes": "23:59"
   },
   "sameAs": [
     siteConfig.social.instagram,
@@ -93,14 +87,6 @@ const localBusinessSchema = {
           "name": "Obras Civiles",
           "description": "Trabajos en techo, muros, puertas y ventanas. Cálculo de materiales y ejecución completa."
         }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Urgencias 24/7",
-          "description": "Servicio de emergencia para cañerías rotas, fugas de gas e inundaciones."
-        }
       }
     ]
   }
@@ -111,7 +97,7 @@ const localBusinessSchema = {
 <html lang="es-CL">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover" />
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -125,7 +111,7 @@ const localBusinessSchema = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={Astro.url.href} />
-    <meta name="keywords" content="gasfiter santiago, gasfiter región metropolitana, gasfiter certificado SEC, instalaciones sanitarias santiago, reparación filtraciones, instalación gas, calefón, urgencias gasfiter 24/7, plomero santiago" />
+    <meta name="keywords" content="gasfiter santiago, gasfiter región metropolitana, gasfiter certificado SEC, instalaciones sanitarias santiago, reparación filtraciones, instalación gas, calefón, plomero santiago" />
     <meta name="author" content={siteConfig.name} />
     <meta name="robots" content="index, follow" />
 
