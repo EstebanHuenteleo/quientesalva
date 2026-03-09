@@ -48,16 +48,19 @@ import { siteConfig } from '../data/siteConfig';
           </div>
         </a>
 
-        <!-- Schedule -->
-        <div class="bg-white/10 p-5 rounded-xl">
-          <div class="flex items-center gap-3 mb-3">
-            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <p class="text-white font-bold">Horario de Atención</p>
+        <!-- Urgencias 24/7 -->
+        <div class="bg-accent/20 p-5 rounded-xl border border-accent/30">
+          <div class="flex items-center gap-3">
+            <div class="w-14 h-14 bg-accent rounded-full flex items-center justify-center shrink-0">
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-accent font-bold text-lg">{siteConfig.schedule.emergency}</p>
+              <p class="text-white/70 text-sm">Disponible todos los días, a toda hora</p>
+            </div>
           </div>
-          <p class="text-white/80 text-sm">{siteConfig.schedule.regular}</p>
-          <p class="text-accent font-semibold text-sm mt-1">{siteConfig.schedule.emergency}</p>
         </div>
       </div>
 
@@ -65,21 +68,32 @@ import { siteConfig } from '../data/siteConfig';
       <div data-aos="fade-left">
         <form id="contact-form" class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 space-y-5">
           <div>
-            <label for="name" class="block text-white/90 text-sm font-medium mb-1.5">Nombre</label>
+            <label for="from_name" class="block text-white/90 text-sm font-medium mb-1.5">Nombre</label>
             <input
               type="text"
-              id="name"
-              name="name"
+              id="from_name"
+              name="from_name"
               required
               placeholder="Tu nombre"
               class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
             />
           </div>
           <div>
-            <label for="phone-input" class="block text-white/90 text-sm font-medium mb-1.5">Teléfono (opcional)</label>
+            <label for="from_email" class="block text-white/90 text-sm font-medium mb-1.5">Email</label>
+            <input
+              type="email"
+              id="from_email"
+              name="from_email"
+              required
+              placeholder="tu@email.com"
+              class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+            />
+          </div>
+          <div>
+            <label for="phone" class="block text-white/90 text-sm font-medium mb-1.5">Teléfono (opcional)</label>
             <input
               type="tel"
-              id="phone-input"
+              id="phone"
               name="phone"
               placeholder="+56 9 XXXX XXXX"
               class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
@@ -98,13 +112,12 @@ import { siteConfig } from '../data/siteConfig';
           </div>
           <button
             type="submit"
+            id="contact-btn"
             class="w-full bg-accent hover:bg-accent/90 text-white font-bold py-3 px-6 rounded-lg transition-colors text-lg"
           >
             Enviar Mensaje
           </button>
-          <p class="text-white/40 text-xs text-center">
-            * El formulario se habilitará próximamente. Por ahora, contáctame por WhatsApp o teléfono.
-          </p>
+          <div id="form-status" class="hidden text-center text-sm font-medium py-2 px-4 rounded-lg"></div>
         </form>
       </div>
     </div>
@@ -112,8 +125,36 @@ import { siteConfig } from '../data/siteConfig';
 </section>
 
 <script>
-  document.getElementById('contact-form')?.addEventListener('submit', (e) => {
+  import emailjs from '@emailjs/browser';
+
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const btn = document.getElementById('contact-btn') as HTMLButtonElement;
+  const status = document.getElementById('form-status') as HTMLDivElement;
+
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    alert('Formulario en construcción. Por favor, contáctame por WhatsApp o teléfono.');
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    status.classList.add('hidden');
+
+    try {
+      await emailjs.sendForm(
+        import.meta.env.PUBLIC_EMAILJS_SERVICE_ID,
+        import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID,
+        form,
+        import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY,
+      );
+
+      status.textContent = 'Mensaje enviado correctamente. Te responderé pronto.';
+      status.className = 'text-center text-sm font-medium py-2 px-4 rounded-lg bg-whatsapp/20 text-whatsapp';
+      form.reset();
+    } catch {
+      status.textContent = 'Error al enviar. Intenta por WhatsApp o teléfono.';
+      status.className = 'text-center text-sm font-medium py-2 px-4 rounded-lg bg-red-500/20 text-red-300';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Enviar Mensaje';
+    }
   });
 </script>
