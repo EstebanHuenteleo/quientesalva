@@ -28,7 +28,7 @@ const images = [
       {images.map((img, i) => (
         <a
           href={img.src}
-          class="glightbox group relative overflow-hidden rounded-xl aspect-square bg-gray-100 block"
+          class="glightbox-gallery group relative overflow-hidden rounded-xl aspect-square bg-gray-100 block"
           data-gallery="trabajos"
           data-description={img.alt}
           data-aos="fade-up"
@@ -52,17 +52,36 @@ const images = [
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 
 <style is:global>
-  /* Flechas de navegación siempre visibles */
-  .glightbox-container .gnext,
-  .glightbox-container .gprev {
+  /* Botón cerrar (X) siempre visible */
+  .glightbox-container .gclose,
+  .glightbox-clean .gclose {
     display: flex !important;
     opacity: 1 !important;
     width: 44px !important;
     height: 44px !important;
-    background: rgba(30, 58, 95, 0.7) !important;
+    background: rgba(30, 58, 95, 0.8) !important;
     border-radius: 50% !important;
     align-items: center;
     justify-content: center;
+    top: 12px !important;
+    right: 12px !important;
+  }
+  .glightbox-container .gclose svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+  }
+  .glightbox-container .gclose:hover {
+    background: rgba(249, 115, 22, 0.9) !important;
+  }
+
+  /* Flechas de navegación visibles en galería */
+  .glightbox-container .gnext,
+  .glightbox-container .gprev {
+    width: 44px !important;
+    height: 44px !important;
+    background: rgba(30, 58, 95, 0.7) !important;
+    border-radius: 50% !important;
   }
   .glightbox-container .gnext svg,
   .glightbox-container .gprev svg {
@@ -74,26 +93,29 @@ const images = [
   .glightbox-container .gprev:hover {
     background: rgba(30, 58, 95, 0.9) !important;
   }
-  /* Posición en mobile para que no tapen la imagen */
-  @media (max-width: 768px) {
-    .glightbox-container .gnext {
-      right: 8px !important;
-    }
-    .glightbox-container .gprev {
-      left: 8px !important;
-    }
-  }
+
 </style>
 
 <script is:inline src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function() {
+    // Galería de trabajos: con flechas, swipe y loop
     GLightbox({
-      selector: '.glightbox',
+      selector: '.glightbox-gallery',
       touchNavigation: true,
       loop: true,
       closeOnOutsideClick: true,
       draggable: true,
+      zoomable: false,
+    });
+
+    // Foto de perfil: imagen única, sin flechas
+    GLightbox({
+      selector: '.glightbox-profile',
+      touchNavigation: false,
+      loop: false,
+      closeOnOutsideClick: true,
+      draggable: false,
       zoomable: false,
     });
   });
