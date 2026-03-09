@@ -1,11 +1,20 @@
 ---
 const images = [
-  { alt: 'Instalación sanitaria', placeholder: 'Instalación+Sanitaria' },
-  { alt: 'Reparación de cañerías', placeholder: 'Reparación+Cañerías' },
-  { alt: 'Instalación de calefón', placeholder: 'Instalación+Calefón' },
-  { alt: 'Destape de cañerías', placeholder: 'Destape+Cañerías' },
-  { alt: 'Red de gas', placeholder: 'Red+de+Gas' },
-  { alt: 'Trabajo terminado', placeholder: 'Trabajo+Terminado' },
+  { src: '/trabajos/calefon-instalado.jpg', alt: 'Instalación de calefón Mademsa por gasfiter certificado en Santiago' },
+  { src: '/trabajos/valvulas-industriales.jpg', alt: 'Instalación de válvulas industriales - gasfitería profesional' },
+  { src: '/trabajos/red-sanitaria-edificio.jpg', alt: 'Red sanitaria completa en edificio - instalación sanitaria Santiago' },
+  { src: '/trabajos/red-canerias-panoramica.jpg', alt: 'Red de cañerías de cobre - instalación profesional' },
+  { src: '/trabajos/conexion-calefones.jpg', alt: 'Conexión de calefones a gas - servicio certificado SEC' },
+  { src: '/trabajos/reparacion-lavaplatos.jpg', alt: 'Reparación de lavaplatos - gasfiter a domicilio Santiago' },
+  { src: '/trabajos/reparacion-caneria.jpg', alt: 'Reparación de cañería rota - servicio de urgencia' },
+  { src: '/trabajos/instalacion-wc.jpg', alt: 'Instalación de WC - gasfiter profesional Santiago' },
+  { src: '/trabajos/caneria-cobre.jpg', alt: 'Trabajo en cañería de cobre - instalación sanitaria' },
+  { src: '/trabajos/termo-agua.jpg', alt: 'Instalación de termo de agua caliente - gasfiter certificado' },
+  { src: '/trabajos/tina-instalada.jpg', alt: 'Instalación de tina de baño - remodelación sanitaria' },
+  { src: '/trabajos/obra-civil-construccion.jpg', alt: 'Obra civil y construcción - trabajos de albañilería' },
+  { src: '/trabajos/remodelacion-cocina.jpg', alt: 'Remodelación de cocina - gasfitería y obras civiles' },
+  { src: '/trabajos/moldaje-estructura.jpg', alt: 'Moldaje y estructura - obra civil profesional' },
+  { src: '/trabajos/armadura-fierro.jpg', alt: 'Armadura de fierro - construcción y obras civiles Santiago' },
 ];
 ---
 
@@ -18,24 +27,41 @@ const images = [
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
       {images.map((img, i) => (
-        <div
+        <a
+          href={img.src}
+          class="glightbox group relative overflow-hidden rounded-xl aspect-square bg-gray-100 block"
+          data-gallery="trabajos"
+          data-description={img.alt}
           data-aos="fade-up"
-          data-aos-delay={i * 100}
-          class="group relative overflow-hidden rounded-2xl aspect-[4/3] bg-gray-100"
+          data-aos-delay={i * 50}
         >
           <img
-            src={`https://placehold.co/600x450/1e3a5f/white?text=${img.placeholder}`}
+            src={img.src}
             alt={img.alt}
             loading="lazy"
             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <p class="absolute bottom-4 left-4 text-white font-semibold text-sm">{img.alt}</p>
+            <p class="absolute bottom-3 left-3 right-3 text-white font-semibold text-xs sm:text-sm">{img.alt}</p>
           </div>
-        </div>
+        </a>
       ))}
     </div>
   </div>
 </section>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
+<script is:inline src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    GLightbox({
+      selector: '.glightbox',
+      touchNavigation: true,
+      loop: true,
+      closeOnOutsideClick: true,
+    });
+  });
+</script>

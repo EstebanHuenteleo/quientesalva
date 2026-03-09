@@ -2,8 +2,29 @@
 import { siteConfig } from '../data/siteConfig';
 
 const experience = [
-  { period: '2014 - Presente', role: 'Gasfiter Independiente', description: 'Atención a domicilio en comunas del sur de Santiago. Más de 500 trabajos realizados.' },
-  { period: '2010 - 2014', role: 'Gasfiter en Empresa de Construcción', description: 'Instalaciones sanitarias y de gas en proyectos residenciales y comerciales.' },
+  {
+    period: '2019 - Presente',
+    role: 'Instalador Sanitario y de Gas Independiente',
+    description: 'Instalaciones sanitarias, de gas, alcantarillado. Mantención, construcción y reparación de obras menores en toda la Región Metropolitana.',
+  },
+  {
+    period: '2017 - 2021',
+    role: 'Instalador de Gas Autorizado - Metrogas',
+    description: 'Instalador autorizado de sistemas de gas domiciliario. Instalación de artefactos a gas, redes de distribución y mantención conforme a normativa vigente.',
+  },
+  {
+    period: '',
+    role: 'Maestro de Mantención y Construcción - Municipalidad de San Miguel',
+    description: 'Planificación y ejecución de obras menores en gas y sanitario. Apoyo técnico en infraestructura municipal.',
+  },
+];
+
+const education = [
+  {
+    period: '2019',
+    title: 'Técnico en Construcción - INACAP',
+    description: 'Carrera completa (4 semestres presenciales). Formación técnica integral en construcción. En proceso de titulación (práctica profesional).',
+  },
 ];
 ---
 
@@ -18,8 +39,8 @@ const experience = [
       <div data-aos="fade-right">
         <div class="relative overflow-hidden rounded-2xl">
           <img
-            src="https://placehold.co/500x600/1e3a5f/white?text=Salvador+Huenteleo"
-            alt={siteConfig.name}
+            src="/img/salvador-huenteleo.jpg"
+            alt={`${siteConfig.name} - Gasfiter profesional certificado SEC en Santiago`}
             class="w-full shadow-lg"
             loading="lazy"
           />
@@ -29,37 +50,83 @@ const experience = [
         </div>
       </div>
 
-      <!-- Bio + timeline + certs -->
+      <!-- Bio + timeline + education + certs -->
       <div data-aos="fade-left">
         <p class="text-lg text-text/80 leading-relaxed mb-8">
-          Soy <strong class="text-primary">{siteConfig.name}</strong>, gasfiter profesional con más de 10 años de experiencia.
-          Me especializo en instalaciones sanitarias, redes de gas y reparaciones de emergencia.
+          Soy <strong class="text-primary">{siteConfig.name}</strong>, gasfiter profesional certificado SEC con experiencia en instalaciones de gas, sanitario y alcantarillado.
+          Actualmente cursando Técnico en Construcción en INACAP, próximo a titularse.
           Trabajo con responsabilidad, limpieza y siempre cumpliendo la normativa vigente.
         </p>
 
-        <!-- Timeline -->
+        <!-- Experiencia -->
         <h3 class="text-xl font-bold text-primary mb-6">Experiencia</h3>
         <div class="space-y-6 mb-8">
           {experience.map(exp => (
             <div class="relative pl-6 border-l-2 border-accent/30">
               <div class="absolute -left-[7px] top-1 w-3 h-3 bg-accent rounded-full"></div>
-              <span class="text-sm font-semibold text-accent">{exp.period}</span>
+              {exp.period && <span class="text-sm font-semibold text-accent">{exp.period}</span>}
               <h4 class="text-base font-bold text-primary">{exp.role}</h4>
               <p class="text-sm text-text/70">{exp.description}</p>
             </div>
           ))}
         </div>
 
-        <!-- Certifications -->
+        <!-- Formación -->
+        <h3 class="text-xl font-bold text-primary mb-4">Formación</h3>
+        <div class="space-y-4 mb-8">
+          {education.map(edu => (
+            <div class="bg-white rounded-xl p-4 border border-gray-100">
+              <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-primary-light mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
+                </svg>
+                <div>
+                  <span class="text-sm font-semibold text-accent">{edu.period}</span>
+                  <h4 class="text-base font-bold text-primary">{edu.title}</h4>
+                  <p class="text-sm text-text/70">{edu.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Competencias -->
+        <h3 class="text-xl font-bold text-primary mb-4">Competencias</h3>
+        <div class="flex flex-wrap gap-2 mb-8">
+          {['Instalaciones de gas', 'Sanitario', 'Alcantarillado', 'Obras menores', 'Gestión en terreno'].map(comp => (
+            <span class="bg-primary/5 text-primary/80 text-xs font-medium px-3 py-1.5 rounded-full border border-primary/10">
+              {comp}
+            </span>
+          ))}
+        </div>
+
+        <!-- Certificaciones -->
         <h3 class="text-xl font-bold text-primary mb-4">Certificaciones</h3>
         <div class="flex flex-wrap gap-3">
           {siteConfig.certifications.map(cert => (
-            <span class="inline-flex items-center gap-2 bg-primary/10 text-primary font-medium text-sm px-4 py-2 rounded-lg">
-              <svg class="w-4 h-4 text-whatsapp" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              {cert.name}
-            </span>
+            cert.file ? (
+              <a
+                href={cert.file}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 bg-primary/10 text-primary font-medium text-sm px-4 py-2 rounded-lg hover:bg-primary hover:text-white transition-colors"
+              >
+                <svg class="w-4 h-4 text-whatsapp" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                {cert.name}
+                <svg class="w-3.5 h-3.5 opacity-60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                </svg>
+              </a>
+            ) : (
+              <span class="inline-flex items-center gap-2 bg-primary/10 text-primary font-medium text-sm px-4 py-2 rounded-lg">
+                <svg class="w-4 h-4 text-whatsapp" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                {cert.name}
+              </span>
+            )
           ))}
         </div>
       </div>

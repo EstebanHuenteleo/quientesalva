@@ -1,0 +1,32 @@
+---
+interface Props {
+  variant?: 'icon' | 'full';
+  class?: string;
+  iconClass?: string;
+  textClass?: string;
+}
+
+const { variant = 'full', class: className = '', iconClass = 'w-9 h-9', textClass = '' } = Astro.props;
+
+---
+
+{variant === 'icon' ? (
+  <svg class:list={[iconClass, className]} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="24" cy="24" r="22" fill="#1e3a5f" stroke="white" stroke-opacity="0.2" stroke-width="1.5"/>
+    <path d="M35 14 H22 C14 14 14 25 22 25 H26 C34 25 34 36 26 36 H13"
+          stroke="white" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <circle cx="12" cy="39" r="2" fill="#f97316"/>
+  </svg>
+) : (
+  <div class:list={['flex items-center gap-2', className]}>
+    <svg class:list={['shrink-0', iconClass]} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="24" r="22" fill="#1e3a5f" stroke="white" stroke-opacity="0.2" stroke-width="1.5"/>
+      <path d="M35 14 H22 C14 14 14 25 22 25 H26 C34 25 34 36 26 36 H13"
+            stroke="white" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <circle cx="12" cy="39" r="2" fill="#f97316"/>
+    </svg>
+    <span class:list={['font-bold text-lg leading-tight', textClass]}>
+      quiente<span class="text-accent">salva</span><span class="opacity-50 font-semibold">.cl</span>
+    </span>
+  </div>
+)}

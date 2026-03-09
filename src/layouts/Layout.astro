@@ -8,25 +8,132 @@ interface Props {
 }
 
 const {
-  title = `${siteConfig.name} | ${siteConfig.role} en Santiago - ${siteConfig.domain}`,
-  description = `Gasfiter profesional con más de 10 años de experiencia. Instalaciones sanitarias, reparaciones, urgencias 24/7. ${siteConfig.comunas.slice(0, 4).join(', ')} y más comunas de Santiago.`,
+  title = `Gasfiter en Santiago | ${siteConfig.name} - Urgencias 24/7, Certificado SEC`,
+  description = `Gasfiter profesional certificado SEC en Santiago. Instalaciones sanitarias, reparación de filtraciones, instalación de gas, calefones y urgencias 24/7. Más de 10 años de experiencia. ${siteConfig.coverage}. Llama al ${siteConfig.phone}.`,
 } = Astro.props;
 
 const ogImage = new URL('/img/og-image.png', Astro.site);
+const siteUrl = Astro.site?.toString() || 'https://quientesalva.cl';
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "Plumber",
+  "name": siteConfig.name,
+  "alternateName": "quientesalva.cl",
+  "description": "Gasfiter profesional certificado SEC en Santiago de Chile. Instalaciones sanitarias, reparaciones, gas y urgencias 24/7.",
+  "url": siteUrl,
+  "telephone": siteConfig.phone,
+  "image": `${siteUrl}img/salvador-huenteleo.jpg`,
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Santiago",
+    "addressRegion": "Región Metropolitana",
+    "addressCountry": "CL"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -33.4489,
+    "longitude": -70.6693
+  },
+  "areaServed": {
+    "@type": "State",
+    "name": "Región Metropolitana de Santiago"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "opens": "00:00",
+    "closes": "23:59"
+  },
+  "sameAs": [
+    siteConfig.social.instagram,
+    siteConfig.social.facebook
+  ].filter(Boolean),
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Servicios de Gasfitería",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Instalaciones Sanitarias",
+          "description": "Instalación de cañerías, llaves, lavaplatos, WC y más con materiales de calidad."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Reparación de Filtraciones",
+          "description": "Detección y reparación de filtraciones en cañerías, muros y cielos."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Instalación de Gas",
+          "description": "Instalación y reparación de redes de gas certificadas SEC. Cañerías, calefones y estufas."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Calefones y Termos",
+          "description": "Instalación, mantención y reparación de calefones y termos eléctricos de todas las marcas."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Obras Civiles",
+          "description": "Trabajos en techo, muros, puertas y ventanas. Cálculo de materiales y ejecución completa."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Urgencias 24/7",
+          "description": "Servicio de emergencia para cañerías rotas, fugas de gas e inundaciones."
+        }
+      }
+    ]
+  }
+};
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es-CL">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#1e3a5f" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={Astro.url.href} />
+    <meta name="keywords" content="gasfiter santiago, gasfiter región metropolitana, gasfiter certificado SEC, instalaciones sanitarias santiago, reparación filtraciones, instalación gas, calefón, urgencias gasfiter 24/7, plomero santiago" />
+    <meta name="author" content={siteConfig.name} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Geo meta tags para SEO local -->
+    <meta name="geo.region" content="CL-RM" />
+    <meta name="geo.placename" content="Santiago" />
+    <meta name="geo.position" content="-33.4489;-70.6693" />
+    <meta name="ICBM" content="-33.4489, -70.6693" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -35,6 +142,7 @@ const ogImage = new URL('/img/og-image.png', Astro.site);
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:locale" content="es_CL" />
+    <meta property="og:site_name" content="quientesalva.cl" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -42,9 +150,15 @@ const ogImage = new URL('/img/og-image.png', Astro.site);
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    <!-- Preconnect -->
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+
+    <!-- Preconnect + Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   </head>
   <body class="bg-surface antialiased overflow-x-hidden">
