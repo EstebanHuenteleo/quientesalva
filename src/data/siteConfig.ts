@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Salvador Huenteleo",
-  role: "Gasfiter Profesional",
+  role: "Técnico en Construcción · Gasfíter Profesional",
   slogan: "Rápido, confiable y con garantía",
   domain: "quientesalva.cl",
   whatsapp: "56988336290",
