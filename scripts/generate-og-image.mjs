@@ -51,13 +51,13 @@ const svg = `<svg width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HE
   <!-- Divider -->
   <rect x="215" y="260" width="80" height="4" rx="2" fill="#f97316"/>
 
-  <!-- INACAP + SEC -->
+  <!-- Check 1 -->
   <text x="245" y="310" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="white" fill-opacity="0.85">
-    Técnico en Construcción - INACAP · Certificado SEC
+    +10 años de experiencia
   </text>
   <text x="217" y="311" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#22c55e">✓</text>
 
-  <!-- Slogan -->
+  <!-- Check 2 -->
   <text x="245" y="355" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="white" fill-opacity="0.85">
     Rápido, confiable y con garantía
   </text>
